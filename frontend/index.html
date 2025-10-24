@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crop Suggester</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, button { margin: 10px 0; padding: 8px; width: 300px; }
+    #result { margin-top: 20px; font-weight: bold; color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Crop Suggestion Form</h2>
+  <form id="cropForm">
+    <input type="text" id="soilType" placeholder="Enter Soil Type (e.g., sandy)" required />
+    <input type="text" id="region" placeholder="Enter Region (e.g., Tamil Nadu)" required />
+    <button type="submit">Get Suggestion</button>
+  </form>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('cropForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const soilType = document.getElementById('soilType').value;
+      const region = document.getElementById('region').value;
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/suggest', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ soilType, region })
+        });
+
+        if (!response.ok) throw new Error('API error');
+
+        const data = await response.json();
+        document.getElementById('result').classList.remove('error');
+        document.getElementById('result').innerText =
+          `🌱 Suggested Crop: ${data.suggestedCrop}\n📌 Reason: ${data.reason}`;
+      } catch (error) {
+        document.getElementById('result').classList.add('error');
+        document.getElementById('result').innerText = '❌ Error: Could not connect to API.';
+        console.error('Fetch error:', error);
+      }
+    });
+  </script>
+</body>
+</html>
