@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - input_prep
+      - recommendation
+    networks:
+      - agro_network
+
+  input_prep:
+    build:
+      context: ./input_prep
+    ports:
+      - "8001:8001"
+    networks:
+      - agro_network
+
+  recommendation:
+    build:
+      context: ./recommendation
+    ports:
+      - "8002:8002"
+    networks:
+      - agro_network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_GATEWAY=http://localhost:8000
+    networks:
+      - agro_network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host
+
+networks:
+  agro_network:
+    driver: bridge

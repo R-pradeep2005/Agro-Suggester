@@ -5,11 +5,11 @@ import numpy as np
 
 # Crop model configurations
 CROPS = {
-    "rice": {"model": "models/rice.pkl", "data": "data-sets/rice_yield_dataset.csv"},
-    "maize": {"model": "models/maize.pkl", "data": "data-sets/maize_yield_dataset.csv"},
-    "wheat": {"model": "models/wheat.pkl", "data": "data-sets/wheat_yield_dataset.csv"},
-    "groundnut": {"model": "models/groundnut.pkl", "data": "data-sets/groundnut_yield_dataset.csv"},
-    "sugarcane": {"model": "models/cotton.pkl", "data": "data-sets/cotton_yield_dataset.csv"}
+    "rice": {"model": "models/rice.pkl", "data": "training_crop_datasets/rice_yield_dataset.csv"},
+    "maize": {"model": "models/maize.pkl", "data": "training_crop_datasets/maize_yield_dataset.csv"},
+    "wheat": {"model": "models/wheat.pkl", "data": "training_crop_datasets/wheat_yield_dataset.csv"},
+    "groundnut": {"model": "models/groundnut.pkl", "data": "training_crop_datasets/groundnut_yield_dataset.csv"},
+    "sugarcane": {"model": "models/cotton.pkl", "data": "training_crop_datasets/cotton_yield_dataset.csv"}
 }
 
 # ---- SAMPLE INPUT ----
