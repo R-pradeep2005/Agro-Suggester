@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import TTSButton from './TTSButton';
 
 const Navbar = ({ currentInstructionText }) => {
   const { i18n, t } = useTranslation();
   const [isPlaying, setIsPlaying] = React.useState(false);
+
+  useEffect(() => {
+    document.title = t('appTitle');
+  }, [i18n.language, t]);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);

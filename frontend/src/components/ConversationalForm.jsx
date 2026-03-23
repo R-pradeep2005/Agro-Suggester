@@ -44,7 +44,7 @@ const ConversationalForm = ({ onQuestionChange }) => {
           />
         </div>
 
-        <div style={{ flex: 1, position: 'relative' }}>
+        <div id="step-content" style={{ flex: 1, position: 'relative' }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
