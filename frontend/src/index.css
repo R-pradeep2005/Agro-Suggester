@@ -165,3 +165,487 @@ body {
   padding: 2rem;
   width: 100%;
 }
+
+/* =========================================
+   DASHBOARD SPECIFIC STYLES
+   ========================================= */
+
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f0fdf4; /* Match light green bg */
+  color: #1f2937;
+}
+
+.dash-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.dash-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dash-logo-icon {
+  background-color: #10b981;
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.dash-logo h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.dash-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.25rem 1rem 0.25rem 0.25rem;
+  border-radius: 9999px;
+}
+
+.dash-avatar {
+  background-color: #10b981;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.dash-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.user-email {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.dash-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Banner */
+.dash-banner {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+}
+
+.banner-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.banner-icon {
+  font-size: 1.2rem;
+}
+
+.banner-value {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.banner-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.banner-right {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 350px;
+}
+
+.accuracy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.accuracy-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.progress-bg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-fill {
+  background: white;
+  height: 100%;
+}
+
+.accuracy-desc {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* Sections */
+.dash-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.title-icon {
+  color: #10b981;
+}
+
+.section-desc {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  margin-top: -1rem;
+}
+
+/* Climate Grid */
+.climate-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.climate-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bg-orange { background: linear-gradient(135deg, #ff6b6b, #ff0055); }
+.bg-blue { background: linear-gradient(135deg, #4facfe, #4f46e5); }
+.bg-teal { background: linear-gradient(135deg, #00d2ff, #06b6d4); }
+.bg-purple { background: linear-gradient(135deg, #d38312, #a83279); } /* Using purple/magenta tones for Clear Sky as per mockup */
+.bg-purple { background: linear-gradient(135deg, #df51ff, #9333ea); }
+
+.climate-card h4 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.climate-card p {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.info-box {
+  display: flex;
+  padding: 1rem;
+  border-radius: 8px;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.info-blue {
+  background-color: #eff6ff;
+  color: #1e3a8a;
+}
+.info-purple {
+  background-color: #f5f3ff;
+  color: #4c1d95;
+}
+.info-purple-darker {
+  background-color: #eef2ff;
+  border: 1px solid #c7d2fe;
+}
+.info-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Crop Cards */
+.crop-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+}
+
+.crop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.crop-header-left {
+  display: flex;
+  gap: 1rem;
+}
+
+.crop-emoji {
+  font-size: 2.5rem;
+}
+
+.crop-title-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.crop-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.crop-title-row h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge-yellow { background-color: #fef08a; color: #854d0e; }
+.badge-cyan { background-color: #cffafe; color: #0891b2; }
+
+.score-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: white;
+}
+.score-green { background-color: #10b981; }
+.score-orange { background-color: #f97316; }
+
+.suitability-bar-container {
+  margin-bottom: 1.5rem;
+}
+
+.suitability-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.suitability-bar-container .progress-bg {
+  background: #f3f4f6;
+  height: 8px;
+}
+.bg-green { background: #10b981; }
+.bg-orange { background: #f97316; }
+
+.crop-details-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+}
+
+.yield-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.yield-box span {
+  font-size: 0.85rem;
+  color: #166534;
+}
+.yield-box strong {
+  font-size: 1.5rem;
+  color: #15803d;
+}
+
+.why-fits {
+  margin-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+.why-fits h5 {
+  font-size: 0.85rem;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.why-fits ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.why-fits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+/* Explainable AI Card */
+.explainable-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.bar-chart {
+  display: flex;
+  height: 250px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding-right: 1rem;
+  color: #9ca3af;
+  font-size: 0.8rem;
+  border-right: 1px dashed #e5e7eb;
+}
+
+.chart-grid {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 1rem;
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  width: 80px;
+}
+
+.bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 0.5rem;
+}
+
+.bar-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  transform: rotate(-45deg);
+  transform-origin: top left;
+  margin-top: 0.5rem;
+}
+
+.weights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: x 2rem;
+  row-gap: 1.5rem;
+  column-gap: 3rem;
+  padding: 1rem 0;
+}
+
+.weight-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.weight-header {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.weight-val {
+  margin-left: auto;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+.dot-blue { background-color: #4f46e5; }
+.dot-purple { background-color: #9333ea; }
+.dot-red { background-color: #ff0055; }
+.dot-cyan { background-color: #06b6d4; }
+.dot-green { background-color: #10b981; }
+
+.weight-item .progress-bg {
+  background: #f3f4f6;
+  height: 8px;
+}
+.weight-item .progress-fill {
+  border-radius: 4px;
+}

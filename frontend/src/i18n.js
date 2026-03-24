@@ -1,7 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// the translations
 const resources = {
   en: {
     translation: {
@@ -35,7 +34,48 @@ const resources = {
       "disposedElsewhere": "Disposed elsewhere",
       "kg": "kg",
       "tons": "tons",
-      "liters": "liters"
+      "liters": "liters",
+
+      // Dashboard
+      "dash_predYield": "AI Predicted Yield",
+      "dash_tonsPerHa": "Tons per Hectare",
+      "dash_modelAcc": "Model Accuracy",
+      "dash_modelDesc": "XGBoost model trained on Indian agri-climate data",
+      "dash_histClimate": "Historical Climate Data Used for Prediction",
+      "dash_curTemp": "Current Temperature",
+      "dash_annRainfall": "Annual Rainfall (30yr avg)",
+      "dash_annHumidity": "Annual Avg Humidity",
+      "dash_clearSky": "Clear Sky",
+      "dash_curCond": "Current Condition",
+      "dash_climateSource": "Rainfall & humidity sourced from NASA POWER 30-year climatology dataset for your exact coordinates. Temperature from Open-Meteo live API.",
+      "dash_cropRecs": "Crop Recommendations",
+      "dash_cropRecsDesc": "Ranked by suitability score computed from your location's historical climate, soil type, and season.",
+      "dash_rice": "Rice",
+      "dash_bestPick": "⭐ Best Pick",
+      "dash_riceDesc": "Staple paddy crop best suited to warm, wet climates.",
+      "dash_suitability": "Suitability",
+      "dash_estYield": "Est. Yield",
+      "dash_riceInfo": "Rice scores 80/100 (climate match: 91, historical field data confidence: 62%). Favourable factors: Temperature (24.3°C) is well suited for this crop; Historical humidity (81%) meets this crop's moisture needs. Caution: Rainfall 824mm is below ideal minimum (1000mm) — irrigation recommended.",
+      "dash_onion": "Onion",
+      "dash_5th": "5th",
+      "dash_onionDesc": "High-demand bulb vegetable with excellent market value.",
+      "dash_onionInfo": "Onion scores 60/100 (climate match: 100, historical field data confidence: 0%). Favourable factors: Annual rainfall (824 mm) falls in the ideal range for this crop; Temperature (24.3°C) is well suited for this crop.",
+      "dash_whyFits": "WHY IT FITS",
+      "dash_fit1": "Annual rainfall (824 mm) falls in the ideal range for this crop",
+      "dash_fit2": "Temperature (24.3°C) is well suited for this crop",
+      "dash_fit3": "Historical humidity (81%) meets this crop's moisture needs",
+      "dash_fit4": "Loamy soil supports healthy root development for this crop",
+      "dash_fit5": "Suitable for the selected kharif season",
+      "dash_expAI": "Explainable AI — Feature Importance",
+      "dash_expAIDesc": "The XGBoost model analysed 5 environmental features. Here's how much each one influenced the prediction.",
+      "dash_featRainfall": "Rainfall",
+      "dash_featSoil": "Soil Type",
+      "dash_featTemp": "Temperature",
+      "dash_featHumidity": "Humidity",
+      "dash_featSeason": "Season",
+      "dash_whyWeights": "Why these weights?",
+      "dash_weightsDesc": "Rainfall (22%) and Soil Type (16%) are the dominant predictors because crop water requirements and root-zone health are fundamentally determined by how much water falls and how well the ground can hold it. Together they account for over half the model's decision weight, which aligns with agricultural science consensus on yield determinants in tropical and sub-tropical regions.",
+      "dash_newPrediction": "Start New Prediction"
     }
   },
   ta: {
@@ -68,7 +108,47 @@ const resources = {
       "disposedElsewhere": "வேறு இடத்தில் அகற்றப்பட்டது",
       "kg": "கிலோ",
       "tons": "டன்கள்",
-      "liters": "லிட்டர்"
+      "liters": "லிட்டர்",
+
+      "dash_predYield": "AI கணித்த மகசூல்",
+      "dash_tonsPerHa": "ஹெக்டேருக்கு டன்கள்",
+      "dash_modelAcc": "மாதிரியின் துல்லியம்",
+      "dash_modelDesc": "இந்திய வேளாண்-காலநிலை தரவுகளில் பயிற்றுவிக்கப்பட்ட XGBoost மாதிரி",
+      "dash_histClimate": "கணிப்புக்கு பயன்படுத்தப்பட்ட வரலாற்று காலநிலை தரவு",
+      "dash_curTemp": "தற்போதைய வெப்பநிலை",
+      "dash_annRainfall": "ஆண்டு மழைப்பொழிவு (30 வருட சராசரி)",
+      "dash_annHumidity": "ஆண்டு சராசரி ஈரப்பதம்",
+      "dash_clearSky": "தெளிவான வானம்",
+      "dash_curCond": "தற்போதைய நிலை",
+      "dash_climateSource": "NASA POWER தரவுத்தளத்திலிருந்து மழைப்பொழிவு மற்றும் ஈரப்பதம் பெறப்பட்டது. திறந்த வானிலை API இலிருந்து வெப்பநிலை.",
+      "dash_cropRecs": "பயிர் பரிந்துரைகள்",
+      "dash_cropRecsDesc": "உங்கள் இருப்பிடத்தின் காலநிலை, மண்ணின் வகை மற்றும் பருவத்தின் அடிப்படையில் கணக்கிடப்பட்ட பொருத்தம் மதிப்பெண் மூலம் தரவரிசைப்படுத்தப்பட்டுள்ளது.",
+      "dash_rice": "அரிசி",
+      "dash_bestPick": "⭐ சிறந்த தேர்வு",
+      "dash_riceDesc": "வெதுவெதுப்பான, ஈரப்பதமான காலநிலைக்கு ஏற்ற பிரதான நெற்பயிர்.",
+      "dash_suitability": "பொருத்தம்",
+      "dash_estYield": "மதிப்பிடப்பட்ட மகசூல்",
+      "dash_riceInfo": "அரிசி 80/100 மதிப்பெண்கள் பெறுகிறது (காலநிலை பொருத்தம்: 91). சாதகமான காரணிகள்: வெப்பநிலை (24.3°C) இந்த பயிருக்கு மிகவும் ஏற்றது; வரலாற்று ஈரப்பதம் (81%) ஈரப்பத தேவைகளை பூர்த்தி செய்கிறது.",
+      "dash_onion": "வெங்காயம்",
+      "dash_5th": "5வது",
+      "dash_onionDesc": "அதிக தேவை கொண்ட மற்றும் சிறந்த சந்தை மதிப்பு கொண்ட காய்கறி.",
+      "dash_onionInfo": "வெங்காயம் 60/100 மதிப்பெண்கள் பெறுகிறது (காலநிலை பொருத்தம்: 100).",
+      "dash_whyFits": "ஏன் இது பொருந்துகிறது",
+      "dash_fit1": "ஆண்டு மழைப்பொழிவு (824 மிமீ) இந்த பயிருக்கு ஏற்ற வரம்பில் உள்ளது",
+      "dash_fit2": "வெப்பநிலை (24.3°C) இந்த பயிருக்கு ஏற்றது",
+      "dash_fit3": "வரலாற்று ஈரப்பதம் (81%) இந்த பயிரின் ஈரப்பத தேவைகளை பூர்த்தி செய்கிறது",
+      "dash_fit4": "களிமண் இந்த பயிரின் வேர் வளர்ச்சிக்கு உதவுகிறது",
+      "dash_fit5": "தேர்ந்தெடுக்கப்பட்ட காரீப் பருவத்திற்கு ஏற்றது",
+      "dash_expAI": "விளக்கக்கூடிய AI - அம்ச முக்கியத்துவம்",
+      "dash_expAIDesc": "XGBoost மாதிரி 5 சுற்றுச்சூழல் அம்சங்களை பகுப்பாய்வு செய்தது.",
+      "dash_featRainfall": "மழைப்பொழிவு",
+      "dash_featSoil": "மண் வகை",
+      "dash_featTemp": "வெப்பநிலை",
+      "dash_featHumidity": "ஈரப்பதம்",
+      "dash_featSeason": "பருவம்",
+      "dash_whyWeights": "ஏன் இந்த முக்கியத்துவம்?",
+      "dash_weightsDesc": "நீர் தேவைகள் மற்றும் வேர் ஆரோக்கியம் ஆகியவை எவ்வளவு மழை பெய்கிறது மற்றும் நிலம் அதை எவ்வளவு நன்றாக வைத்திருக்கிறது என்பதன் மூலம் தீர்மானிக்கப்படுவதால் மழைப்பொழிவு (22%) மற்றும் மண் வகை (16%) ஆகியவை ஆதிக்கம் செலுத்தும் அளவீடுகளாகும்.",
+      "dash_newPrediction": "புதிய கணிப்பைத் தொடங்கு"
     }
   },
   hi: {
@@ -101,19 +181,59 @@ const resources = {
       "disposedElsewhere": "कहीं और निपटाया गया",
       "kg": "किलो",
       "tons": "टन",
-      "liters": "लीटर"
+      "liters": "लीटर",
+
+      "dash_predYield": "एआई अनुमानित उपज",
+      "dash_tonsPerHa": "टन प्रति हेक्टेयर",
+      "dash_modelAcc": "मॉडल सटीकता",
+      "dash_modelDesc": "भारतीय कृषि-जलवायु डेटा पर प्रशिक्षित XGBoost मॉडल",
+      "dash_histClimate": "भविष्यवाणी के लिए उपयोग किया गया ऐतिहासिक जलवायु डेटा",
+      "dash_curTemp": "वर्तमान तापमान",
+      "dash_annRainfall": "वार्षिक वर्षा (30 वर्ष औसत)",
+      "dash_annHumidity": "वार्षिक औसत आर्द्रता",
+      "dash_clearSky": "साफ आसमान",
+      "dash_curCond": "वर्तमान स्थिति",
+      "dash_climateSource": "NASA POWER डेटासेट से वर्षा और आर्द्रता। ओपन-मेटियो लाइव एपीआई से तापमान।",
+      "dash_cropRecs": "फसल की सिफारिशें",
+      "dash_cropRecsDesc": "आपके स्थान की ऐतिहासिक जलवायु, मिट्टी के प्रकार और मौसम से गणना किए गए उपयुक्तता स्कोर के आधार पर रैंकिंग।",
+      "dash_rice": "चावल",
+      "dash_bestPick": "⭐ सर्वश्रेष्ठ विकल्प",
+      "dash_riceDesc": "गर्म और नम जलवायु के लिए सबसे उपयुक्त मुख्य धान की फसल।",
+      "dash_suitability": "उपयुक्तता",
+      "dash_estYield": "अनुमानित उपज",
+      "dash_riceInfo": "चावल को 80/100 स्कोर मिलता है (जलवायु मिलान: 91)। अनुकूल कारक: तापमान (24.3°C) इस फसल के लिए उपयुक्त है।",
+      "dash_onion": "प्याज",
+      "dash_5th": "5वां",
+      "dash_onionDesc": "उत्कृष्ट बाजार मूल्य के साथ उच्च मांग वाली सब्जी।",
+      "dash_onionInfo": "प्याज को 60/100 स्कोर मिलता है (जलवायु मिलान: 100)। अनुकूल कारक: वार्षिक वर्षा इस फसल के लिए आदर्श है।",
+      "dash_whyFits": "यह क्यों फिट बैठता है",
+      "dash_fit1": "वार्षिक वर्षा (824 मिमी) इस फसल के लिए आदर्श है",
+      "dash_fit2": "तापमान (24.3°C) इस फसल के लिए अच्छी तरह से अनुकूल है",
+      "dash_fit3": "ऐतिहासिक आर्द्रता (81%) इस फसल की नमी की जरूरतों को पूरा करती है",
+      "dash_fit4": "दोमट मिट्टी इस फसल के लिए स्वस्थ जड़ विकास का समर्थन करती है",
+      "dash_fit5": "चयनित खरीफ मौसम के लिए उपयुक्त",
+      "dash_expAI": "व्याख्यात्मक एआई - विशेषता का महत्व",
+      "dash_expAIDesc": "XGBoost मॉडल ने 5 पर्यावरणीय विशेषताओं का विश्लेषण किया।",
+      "dash_featRainfall": "वर्षा",
+      "dash_featSoil": "मिट्टी का प्रकार",
+      "dash_featTemp": "तापमान",
+      "dash_featHumidity": "आर्द्रता",
+      "dash_featSeason": "मौसम",
+      "dash_whyWeights": "ये वज़न क्यों?",
+      "dash_weightsDesc": "वर्षा (22%) और मिट्टी का प्रकार (16%) प्रमुख भविष्यवक्ता हैं क्योंकि फसल की पानी की आवश्यकताएं और जड़ स्वास्थ्य मुख्य रूप से पानी से निर्धारित होते हैं।",
+      "dash_newPrediction": "नई भविष्यवाणी शुरू करें"
     }
   }
 };
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next)
   .init({
     resources,
-    lng: "en", // default language
+    lng: "en",
     fallbackLng: "en",
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false
     }
   });
 

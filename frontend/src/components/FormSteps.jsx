@@ -257,7 +257,7 @@ export const ResidueStatusStep = () => {
 // 9. Final Review Step
 export const ReviewStep = () => {
   const { t } = useTranslation();
-  const { formData, jumpToStep } = useFormContext();
+  const { formData, jumpToStep, setIsSubmitted } = useFormContext();
 
   const handleEdit = (stepIdx) => {
     jumpToStep(stepIdx);
@@ -292,7 +292,7 @@ export const ReviewStep = () => {
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
-        <button className="btn btn-primary" onClick={() => alert('Submitted!')}>
+        <button className="btn btn-primary" onClick={() => setIsSubmitted(true)}>
           {t('submit')}
         </button>
       </div>
