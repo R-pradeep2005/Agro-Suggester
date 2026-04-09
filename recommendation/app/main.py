@@ -61,7 +61,7 @@ def generate_shap_explanation(model, features_df: pd.DataFrame) -> tuple[List[st
 
     feature_names = features_df.columns.tolist()
     
-    # Build reasons
+    # Build reasons as i18n-friendly keys
     reasons = []
     weights = {}
     
@@ -78,8 +78,8 @@ def generate_shap_explanation(model, features_df: pd.DataFrame) -> tuple[List[st
     impact_items.sort(key=lambda x: abs(x["impact"]), reverse=True)
     
     for item in impact_items[:5]:  # Top 5 reasons
-        direction = "positively" if item["impact"] > 0 else "negatively"
-        reasons.append(f"The {item['feature']} level impacts the yield {direction}.")
+        direction = "pos" if item["impact"] > 0 else "neg"
+        reasons.append(f"shap_{item['feature'].lower()}_{direction}")
         
     return reasons, weights
 
@@ -167,8 +167,21 @@ async def predict_recommendation(data: PredictionRequest):
     # Rank crops by yield
     predictions.sort(key=lambda x: x["internal_yield"], reverse=True)
     
+    # Relative suitability: scale scores based on rank position,
+    # so the best crop always has a high score and there's meaningful spread
+    best_yield = predictions[0]["internal_yield"] if predictions else 1.0
+    for i, p in enumerate(predictions):
+        relative_pct = (p["internal_yield"] / best_yield) if best_yield > 0 else 0
+        # Rank penalty: each lower rank loses ~10 points creating spread
+        rank_penalty = i * 10
+        score = int(relative_pct * 90) - rank_penalty
+        p["suitability_score"] = min(max(score, 15), 97)
+
+    # Only return top 3 recommendations
+    top3 = predictions[:3]
+
     crop_recommendations = []
-    for idx, p in enumerate(predictions):
+    for idx, p in enumerate(top3):
         crop_recommendations.append({
             "rank": idx + 1,
             "crop_name": p["crop_name"],

@@ -5,6 +5,8 @@ const FormContext = createContext();
 export const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiResult, setApiResult] = useState(null);
   const [formData, setFormData] = useState({
     geolocation: null,
     plannedDate: '',
@@ -29,6 +31,8 @@ export const FormProvider = ({ children }) => {
   const resetForm = () => {
     setCurrentStep(0);
     setIsSubmitted(false);
+    setIsLoading(false);
+    setApiResult(null);
     setFormData({
       geolocation: null,
       plannedDate: '',
@@ -46,14 +50,11 @@ export const FormProvider = ({ children }) => {
   return (
     <FormContext.Provider value={{
       currentStep,
-      isSubmitted,
-      setIsSubmitted,
-      formData,
-      updateFormData,
-      nextStep,
-      prevStep,
-      jumpToStep,
-      resetForm
+      isSubmitted, setIsSubmitted,
+      isLoading, setIsLoading,
+      apiResult, setApiResult,
+      formData, updateFormData,
+      nextStep, prevStep, jumpToStep, resetForm
     }}>
       {children}
     </FormContext.Provider>

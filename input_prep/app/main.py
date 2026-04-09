@@ -1,3 +1,4 @@
+import os
 import httpx
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -101,8 +102,13 @@ async def prepare_features(data: GeolocationInput):
     """
     # In a real environment we would make async HTTP calls here.
     # We call the mock functions directly to bypass networking overhead for MVP.
+    print(f"\n[INPUT_PREP] ← Received request from Gateway for ({data.lat}, {data.lon})")
+    print(f"[INPUT_PREP] → Calling SoilGrids API for soil pH & nitrogen data...")
     soil_data = await get_soil_data(data.lat, data.lon)
+    print(f"[INPUT_PREP] ✓ Soil data fetched: pH={soil_data.get('ph')}, N={soil_data.get('nitrogen')}")
+    print(f"[INPUT_PREP] → Calling Open-Meteo Weather API for climate data...")
     weather_data = await get_weather_data(data.lat, data.lon)
+    print(f"[INPUT_PREP] ✓ Weather data fetched: temp={weather_data.get('temperature')}°C, rainfall={weather_data.get('rainfall_mm')}mm")
         
     # Feature Engineering & Synthesis logic
     features = {
@@ -135,11 +141,17 @@ async def prepare_features(data: GeolocationInput):
         }
     }
     
+    print(f"[INPUT_PREP] ✓ Feature vector prepared: {features_payload['features']}")
+    
     # Chain to recommendation service
     try:
+        rec_url = os.environ.get("RECOMMENDATION_URL", "http://localhost:8002")
+        print(f"[INPUT_PREP] → Forwarding feature vector to Recommendation Service: {rec_url}/api/predict")
         async with httpx.AsyncClient(timeout=10.0) as client:
-            rec_resp = await client.post("http://recommendation:8002/api/predict", json=features_payload)
+            rec_resp = await client.post(f"{rec_url}/api/predict", json=features_payload)
+            print(f"[INPUT_PREP] ← Recommendation Service responded: HTTP {rec_resp.status_code}")
             if rec_resp.status_code == 200:
+                print(f"[INPUT_PREP] ✓ Got prediction. Returning result to Gateway.\n")
                 return rec_resp.json()
             else:
                 print(f"Recommendation API Error [{rec_resp.status_code}]: {rec_resp.text}")

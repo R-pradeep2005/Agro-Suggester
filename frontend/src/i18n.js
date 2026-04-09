@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
-      "appTitle": "AgroData Collection",
+      "appTitle": "Agro Suggester",
       "language_en": "English",
       "language_ta": "தமிழ்",
       "language_hi": "हिन्दी",
@@ -75,12 +75,47 @@ const resources = {
       "dash_featSeason": "Season",
       "dash_whyWeights": "Why these weights?",
       "dash_weightsDesc": "Rainfall (22%) and Soil Type (16%) are the dominant predictors because crop water requirements and root-zone health are fundamentally determined by how much water falls and how well the ground can hold it. Together they account for over half the model's decision weight, which aligns with agricultural science consensus on yield determinants in tropical and sub-tropical regions.",
-      "dash_newPrediction": "Start New Prediction"
+      "dash_newPrediction": "Start New Prediction",
+
+      // SHAP reason keys (feature_direction)
+      "shap_soil_ph_pos": "Soil pH is favorable for this crop",
+      "shap_soil_ph_neg": "Soil pH may limit yield for this crop",
+      "shap_temperature_pos": "Temperature is well-suited for this crop",
+      "shap_temperature_neg": "Temperature conditions are suboptimal for this crop",
+      "shap_humidity_pos": "Humidity levels support healthy growth",
+      "shap_humidity_neg": "Low humidity may stress this crop",
+      "shap_rainfall_mm_pos": "Rainfall is favorable for this crop",
+      "shap_rainfall_mm_neg": "Insufficient rainfall may reduce yield",
+      "shap_wind_speed_pos": "Wind speed is within acceptable range",
+      "shap_wind_speed_neg": "High wind speed may affect this crop",
+      "shap_n_pos": "Nitrogen levels boost yield potential",
+      "shap_n_neg": "Nitrogen levels may limit this crop",
+      "shap_p_pos": "Phosphorus levels are beneficial",
+      "shap_p_neg": "Low phosphorus may reduce output",
+      "shap_k_pos": "Potassium supports yield for this crop",
+      "shap_k_neg": "Low potassium may limit this crop",
+
+      // Feature weight labels
+      "feat_soil_ph": "Soil pH",
+      "feat_temperature": "Temperature",
+      "feat_humidity": "Humidity",
+      "feat_rainfall_mm": "Rainfall",
+      "feat_wind_speed": "Wind Speed",
+      "feat_n": "Nitrogen",
+      "feat_p": "Phosphorus",
+      "feat_k": "Potassium",
+
+      // Crop names
+      "crop_rice": "Rice",
+      "crop_corn": "Corn",
+      "crop_cotton": "Cotton",
+      "crop_sugarcane": "Sugarcane",
+      "crop_tomato": "Tomato"
     }
   },
   ta: {
     translation: {
-      "appTitle": "வேளாண் தரவு சேகரிப்பு",
+      "appTitle": "அக்ரோ சஜஸ்டர்",
       "language_en": "English",
       "language_ta": "தமிழ்",
       "language_hi": "हिन्दी",
@@ -148,12 +183,44 @@ const resources = {
       "dash_featSeason": "பருவம்",
       "dash_whyWeights": "ஏன் இந்த முக்கியத்துவம்?",
       "dash_weightsDesc": "நீர் தேவைகள் மற்றும் வேர் ஆரோக்கியம் ஆகியவை எவ்வளவு மழை பெய்கிறது மற்றும் நிலம் அதை எவ்வளவு நன்றாக வைத்திருக்கிறது என்பதன் மூலம் தீர்மானிக்கப்படுவதால் மழைப்பொழிவு (22%) மற்றும் மண் வகை (16%) ஆகியவை ஆதிக்கம் செலுத்தும் அளவீடுகளாகும்.",
-      "dash_newPrediction": "புதிய கணிப்பைத் தொடங்கு"
+      "dash_newPrediction": "புதிய கணிப்பைத் தொடங்கு",
+
+      "shap_soil_ph_pos": "மண்ணின் pH இந்த பயிருக்கு சாதகமாக உள்ளது",
+      "shap_soil_ph_neg": "மண்ணின் pH மகசூலை குறைக்கலாம்",
+      "shap_temperature_pos": "வெப்பநிலை இந்த பயிருக்கு ஏற்றது",
+      "shap_temperature_neg": "வெப்பநிலை சரியானதாக இல்லை",
+      "shap_humidity_pos": "ஈரப்பதம் ஆரோக்கியமான வளர்ச்சியை ஆதரிக்கிறது",
+      "shap_humidity_neg": "குறைந்த ஈரப்பதம் இந்த பயிரை பாதிக்கலாம்",
+      "shap_rainfall_mm_pos": "மழைப்பொழிவு இந்த பயிருக்கு சாதகமானது",
+      "shap_rainfall_mm_neg": "போதிய மழைப்பொழிவு இல்லாமல் மகசூல் குறையலாம்",
+      "shap_wind_speed_pos": "காற்றின் வேகம் சரியான வரம்பில் உள்ளது",
+      "shap_wind_speed_neg": "அதிக காற்று வேகம் இந்த பயிரை பாதிக்கலாம்",
+      "shap_n_pos": "நைட்ரஜன் அளவுகள் மகசூலை அதிகரிக்கின்றன",
+      "shap_n_neg": "நைட்ரஜன் குறைவு மகசூலை பாதிக்கலாம்",
+      "shap_p_pos": "பாஸ்பரஸ் அளவுகள் நன்மை தரும்",
+      "shap_p_neg": "குறைந்த பாஸ்பரஸ் மகசூலை குறைக்கலாம்",
+      "shap_k_pos": "பொட்டாசியம் மகசூலை ஆதரிக்கிறது",
+      "shap_k_neg": "குறைந்த பொட்டாசியம் பயிரை பாதிக்கலாம்",
+
+      "feat_soil_ph": "மண் pH",
+      "feat_temperature": "வெப்பநிலை",
+      "feat_humidity": "ஈரப்பதம்",
+      "feat_rainfall_mm": "மழைப்பொழிவு",
+      "feat_wind_speed": "காற்று வேகம்",
+      "feat_n": "நைட்ரஜன்",
+      "feat_p": "பாஸ்பரஸ்",
+      "feat_k": "பொட்டாசியம்",
+
+      "crop_rice": "அரிசி",
+      "crop_corn": "சோளம்",
+      "crop_cotton": "பருத்தி",
+      "crop_sugarcane": "கரும்பு",
+      "crop_tomato": "தக்காளி"
     }
   },
   hi: {
     translation: {
-      "appTitle": "कृषि डेटा संग्रह",
+      "appTitle": "एग्रो सजेस्टर",
       "language_en": "English",
       "language_ta": "தமிழ்",
       "language_hi": "हिन्दी",
@@ -221,7 +288,39 @@ const resources = {
       "dash_featSeason": "मौसम",
       "dash_whyWeights": "ये वज़न क्यों?",
       "dash_weightsDesc": "वर्षा (22%) और मिट्टी का प्रकार (16%) प्रमुख भविष्यवक्ता हैं क्योंकि फसल की पानी की आवश्यकताएं और जड़ स्वास्थ्य मुख्य रूप से पानी से निर्धारित होते हैं।",
-      "dash_newPrediction": "नई भविष्यवाणी शुरू करें"
+      "dash_newPrediction": "नई भविष्यवाणी शुरू करें",
+
+      "shap_soil_ph_pos": "मिट्टी का pH इस फसल के लिए अनुकूल है",
+      "shap_soil_ph_neg": "मिट्टी का pH उपज को सीमित कर सकता है",
+      "shap_temperature_pos": "तापमान इस फसल के लिए उपयुक्त है",
+      "shap_temperature_neg": "तापमान की स्थिति इस फसल के लिए अनुकूल नहीं है",
+      "shap_humidity_pos": "आर्द्रता स्वस्थ विकास को समर्थन देती है",
+      "shap_humidity_neg": "कम आर्द्रता इस फसल को प्रभावित कर सकती है",
+      "shap_rainfall_mm_pos": "वर्षा इस फसल के लिए अनुकूल है",
+      "shap_rainfall_mm_neg": "अपर्याप्त वर्षा से उपज कम हो सकती है",
+      "shap_wind_speed_pos": "हवा की गति स्वीकार्य सीमा में है",
+      "shap_wind_speed_neg": "तेज हवा इस फसल को प्रभावित कर सकती है",
+      "shap_n_pos": "नाइट्रोजन का स्तर उपज क्षमता को बढ़ाता है",
+      "shap_n_neg": "नाइट्रोजन की कमी उपज को सीमित कर सकती है",
+      "shap_p_pos": "फॉस्फोरस का स्तर फायदेमंद है",
+      "shap_p_neg": "कम फॉस्फोरस उत्पादन को घटा सकता है",
+      "shap_k_pos": "पोटेशियम इस फसल की उपज को समर्थन देता है",
+      "shap_k_neg": "कम पोटेशियम फसल को सीमित कर सकता है",
+
+      "feat_soil_ph": "मिट्टी pH",
+      "feat_temperature": "तापमान",
+      "feat_humidity": "आर्द्रता",
+      "feat_rainfall_mm": "वर्षा",
+      "feat_wind_speed": "हवा की गति",
+      "feat_n": "नाइट्रोजन",
+      "feat_p": "फॉस्फोरस",
+      "feat_k": "पोटेशियम",
+
+      "crop_rice": "चावल",
+      "crop_corn": "मक्का",
+      "crop_cotton": "कपास",
+      "crop_sugarcane": "गन्ना",
+      "crop_tomato": "टमाटर"
     }
   }
 };

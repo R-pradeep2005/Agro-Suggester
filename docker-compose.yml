@@ -6,6 +6,9 @@ services:
       context: ./gateway
     ports:
       - "8000:8000"
+    environment:
+      - INPUT_PREP_URL=http://input_prep:8001
+      - RECOMMENDATION_URL=http://recommendation:8002
     depends_on:
       - input_prep
       - recommendation
@@ -17,6 +20,8 @@ services:
       context: ./input_prep
     ports:
       - "8001:8001"
+    environment:
+      - RECOMMENDATION_URL=http://recommendation:8002
     networks:
       - agro_network
 

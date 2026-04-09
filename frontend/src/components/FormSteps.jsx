@@ -257,11 +257,12 @@ export const ResidueStatusStep = () => {
 // 9. Final Review Step
 export const ReviewStep = () => {
   const { t } = useTranslation();
-  const { formData, jumpToStep, setIsSubmitted } = useFormContext();
+  const { formData, jumpToStep, setIsSubmitted, setIsLoading, setApiResult } = useFormContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setIsLoading(true);
     try {
       const lat = parseFloat(formData.geolocation?.split(',')[0]) || 0;
       const lon = parseFloat(formData.geolocation?.split(',')[1]) || 0;
@@ -293,6 +294,7 @@ export const ReviewStep = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("API response:", data);
+        setApiResult(data);
       } else {
         console.error("API error:", await response.text());
       }
@@ -300,6 +302,7 @@ export const ReviewStep = () => {
       console.error("Submit error:", e);
     } finally {
       setIsSubmitting(false);
+      setIsLoading(false);
       setIsSubmitted(true);
     }
   };
