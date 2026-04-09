@@ -258,6 +258,51 @@ export const ResidueStatusStep = () => {
 export const ReviewStep = () => {
   const { t } = useTranslation();
   const { formData, jumpToStep, setIsSubmitted } = useFormContext();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const lat = parseFloat(formData.geolocation?.split(',')[0]) || 0;
+      const lon = parseFloat(formData.geolocation?.split(',')[1]) || 0;
+      
+      const fertName = formData.prevFertilizerName || '';
+      const fertAmt = parseFloat(formData.prevFertilizerAmountValue) || 0;
+      
+      let n = 0, p = 0, k = 0;
+      if (fertName.includes('Urea')) { n = fertAmt * 0.46; }
+      else if (fertName.includes('DAP')) { n = fertAmt * 0.18; p = fertAmt * 0.46; }
+      else if (fertName.includes('NPK')) { n = fertAmt * 0.19; p = fertAmt * 0.19; k = fertAmt * 0.19; }
+      
+      const payload = {
+        lat: lat,
+        lon: lon,
+        previous_crop: formData.prevCropName || 'None',
+        previous_fertilizer_n: n,
+        previous_fertilizer_p: p,
+        previous_fertilizer_k: k
+      };
+
+      const apiUrl = import.meta.env.VITE_API_GATEWAY || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/input_prep/api/prepare`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log("API response:", data);
+      } else {
+        console.error("API error:", await response.text());
+      }
+    } catch (e) {
+      console.error("Submit error:", e);
+    } finally {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }
+  };
 
   const handleEdit = (stepIdx) => {
     jumpToStep(stepIdx);
@@ -292,8 +337,8 @@ export const ReviewStep = () => {
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
-        <button className="btn btn-primary" onClick={() => setIsSubmitted(true)}>
-          {t('submit')}
+        <button className="btn btn-primary" onClick={handleSubmit} disabled={isSubmitting}>
+          {isSubmitting ? '...' : t('submit')}
         </button>
       </div>
     </div>
