@@ -14,7 +14,7 @@ const resources = {
       "edit": "Edit",
       "reviewStep": "Final Review",
       "reviewDesc": "Please review your details before submitting.",
-      
+
       // Questions
       "geolocation": "Please provide your farm's location.",
       "plannedDate": "When do you plan to start cultivation?",
@@ -24,7 +24,7 @@ const resources = {
       "prevFertilizerAmount": "How much fertilizer was used?",
       "harvestDate": "When was the previous crop harvested?",
       "residueStatus": "What is the residue status?",
-      
+
       // Options/Helpers
       "getLocation": "Get Location",
       "locationCaptured": "Location Captured!",
@@ -110,7 +110,39 @@ const resources = {
       "crop_corn": "Corn",
       "crop_cotton": "Cotton",
       "crop_sugarcane": "Sugarcane",
-      "crop_tomato": "Tomato"
+      "crop_tomato": "Tomato",
+      // Landing Page
+      "lp_badge": "AI-Powered Agriculture",
+      "lp_heroTitle1": "Smart Farming",
+      "lp_heroTitle2": "Better Yields",
+      "lp_heroDesc": "Leverage advanced machine learning to predict crop yields and get personalized recommendations for your farm.",
+      "lp_btnStart": "Get Started",
+      "lp_btnViewDash": "View Dashboard",
+      "lp_statYield": "Yield Data Analyzed",
+      "lp_statRecs": "Top Recommendations",
+      "lp_statAcc": "Model Accuracy",
+      "lp_featuresTitle": "Core Features",
+      "lp_featuresDesc": "Designed to empower farmers with data-driven insights and sustainable practices.",
+      "lp_feat1Title": "Weather Insights",
+      "lp_feat1Desc": "Real-time weather data and 30-year climatology analysis for your coordinates.",
+      "lp_feat2Title": "Yield Prediction",
+      "lp_feat2Desc": "Highly accurate crop yield forecasting based on soil and climate factors.",
+      "lp_feat3Title": "Smart Recommendations",
+      "lp_feat3Desc": "Get ranked suggestions for crops that will thrive in your specific field.",
+      "lp_feat4Title": "Soil Intelligence",
+      "lp_feat4Desc": "Analysis of soil pH and nutrient levels to optimize your farming strategy.",
+      "lp_stepsTitle": "How It Works",
+      "lp_stepsDesc": "Follow three simple steps to unlock the full potential of your farm.",
+      "lp_step1Title": "Identify Location",
+      "lp_step1Desc": "Pinpoint your farm's location for hyper-local environmental data.",
+      "lp_step2Title": "Environmental Sync",
+      "lp_step2Desc": "We pull soil and weather data automatically for your area.",
+      "lp_step3Title": "AI Analysis",
+      "lp_step3Desc": "Our models process the data to provide explainable crop insights.",
+      "lp_ctaTitle": "Ready to Transform Your Farm?",
+      "lp_ctaDesc": "Join thousands of farmers using AI to increase their productivity and sustainability.",
+      "lp_ctaBtn": "Start Your Prediction",
+      "lp_footerCopy": "© 2024 AgroPredict AI. All rights reserved."
     }
   },
   ta: {
@@ -125,7 +157,7 @@ const resources = {
       "edit": "திருத்து",
       "reviewStep": "இறுதி சரிபார்ப்பு",
       "reviewDesc": "சமர்ப்பிப்பதற்கு முன் உங்கள் விவரங்களைச் சரிபார்க்கவும்.",
-      
+
       "geolocation": "உங்கள் பண்ணையின் இருப்பிடத்தை வழங்கவும்.",
       "plannedDate": "நீங்கள் எப்போது சாகுபடியைத் தொடங்கத் திட்டமிட்டுள்ளீர்கள்?",
       "prevCropName": "முன்பு பயிரிடப்பட்ட பயிர் என்ன?",
@@ -134,7 +166,7 @@ const resources = {
       "prevFertilizerAmount": "எவ்வளவு உரம் பயன்படுத்தப்பட்டது?",
       "harvestDate": "முந்தைய பயிர் எப்போது அறுவடை செய்யப்பட்டது?",
       "residueStatus": "பயிர் எச்சத்தின் நிலை என்ன?",
-      
+
       "getLocation": "இருப்பிடத்தைப் பெறுங்கள்",
       "locationCaptured": "இருப்பிடம் பெறப்பட்டது!",
       "selectCrop": "பயிரைத் தேர்ந்தெடுக்கவும்...",
@@ -215,7 +247,39 @@ const resources = {
       "crop_corn": "சோளம்",
       "crop_cotton": "பருத்தி",
       "crop_sugarcane": "கரும்பு",
-      "crop_tomato": "தக்காளி"
+      "crop_tomato": "தக்காளி",
+      // Landing Page
+      "lp_badge": "AI-ஆற்றல் கொண்ட விவசாயம்",
+      "lp_heroTitle1": "புத்திசாலித்தனமான விவசாயம்",
+      "lp_heroTitle2": "சிறந்த மகசூல்",
+      "lp_heroDesc": "பயிர் மகசூலைக் கணிக்கவும், உங்கள் பண்ணைக்கான தனிப்பயனாக்கப்பட்ட பரிந்துரைகளைப் பெறவும் மேம்பட்ட இயந்திர கற்றலைப் பயன்படுத்துங்கள்.",
+      "lp_btnStart": "தொடங்குங்கள்",
+      "lp_btnViewDash": "டாஷ்போர்டைப் பார்க்கவும்",
+      "lp_statYield": "பகுப்பாய்வு செய்யப்பட்ட மகசூல் தரவு",
+      "lp_statRecs": "சிறந்த பரிந்துரைகள்",
+      "lp_statAcc": "மாதிரியின் துல்லியம்",
+      "lp_featuresTitle": "முக்கிய அம்சங்கள்",
+      "lp_featuresDesc": "தரவு சார்ந்த நுண்ணறிவு மற்றும் நிலையான நடைமுறைகளுடன் விவசாயிகளுக்கு அதிகாரம் அளிக்க வடிவமைக்கப்பட்டுள்ளது.",
+      "lp_feat1Title": "வானிலை நுண்ணறிவு",
+      "lp_feat1Desc": "உங்கள் இருப்பிடத்திற்கான நிகழ்நேர வானிலை தரவு மற்றும் 30 ஆண்டு காலநிலை பகுப்பாய்வு.",
+      "lp_feat2Title": "மகசூல் கணிப்பு",
+      "lp_feat2Desc": "மண் மற்றும் காலநிலை காரணிகளின் அடிப்படையில் மிகவும் துல்லியமான பயிர் மகசூல் முன்னறிவிப்பு.",
+      "lp_feat3Title": "புத்திசாலித்தனமான பரிந்துரைகள்",
+      "lp_feat3Desc": "உங்கள் குறிப்பிட்ட நிலத்தில் செழித்து வளரும் பயிர்களுக்கான தரவரிசை ஆலோசனைகளைப் பெறுங்கள்.",
+      "lp_feat4Title": "மண் அறிவு",
+      "lp_feat4Desc": "உங்கள் விவசாய உத்தியை மேம்படுத்த மண்ணின் pH மற்றும் ஊட்டச்சத்து அளவுகளின் பகுப்பாய்வு.",
+      "lp_stepsTitle": "இது எப்படி வேலை செய்கிறது",
+      "lp_stepsDesc": "உங்கள் பண்ணையின் முழு திறனையும் வெளிப்படுத்த மூன்று எளிய வழிமுறைகளை பின்பற்றவும்.",
+      "lp_step1Title": "இருப்பிடத்தை அடையாளம் காணவும்",
+      "lp_step1Desc": "உள்ளூர் சுற்றுச்சூழல் தரவுகளுக்காக உங்கள் பண்ணையின் இருப்பிடத்தை துல்லியமாக குறிக்கவும்.",
+      "lp_step2Title": "சுற்றுச்சூழல் ஒத்திசைவு",
+      "lp_step2Desc": "உங்கள் பகுதிக்கான மண் மற்றும் வானிலை தரவுகளை நாங்கள் தானாகவே இழுக்கிறோம்.",
+      "lp_step3Title": "AI பகுப்பாய்வு",
+      "lp_step3Desc": "விளக்கக்கூடிய பயிர் நுண்ணறிவுகளை வழங்க எங்கள் மாதிரிகள் தரவை செயலாக்குகின்றன.",
+      "lp_ctaTitle": "உங்கள் பண்ணையை மாற்றத் தயாரா?",
+      "lp_ctaDesc": "தங்கள் உற்பத்தித்திறன் மற்றும் நிலைத்தன்மையை அதிகரிக்க AI ஐப் பயன்படுத்தும் ஆயிரக்கணக்கான விவசாயிகளுடன் இணையுங்கள்.",
+      "lp_ctaBtn": "உங்கள் கணிப்பைத் தொடங்குங்கள்",
+      "lp_footerCopy": "© 2024 அக்ரோபிரெடிக்ட் AI. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
     }
   },
   hi: {
@@ -230,7 +294,7 @@ const resources = {
       "edit": "संपादित करें",
       "reviewStep": "अंतिम समीक्षा",
       "reviewDesc": "सबमिट करने से पहले कृपया अपने विवरण की समीक्षा करें।",
-      
+
       "geolocation": "कृपया अपने खेत का स्थान प्रदान करें।",
       "plannedDate": "आप खेती कब शुरू करने की योजना बना रहे हैं?",
       "prevCropName": "पिछली फसल कौन सी बोई गई थी?",
@@ -239,7 +303,7 @@ const resources = {
       "prevFertilizerAmount": "कितनी खाद का उपयोग किया गया था?",
       "harvestDate": "पिछली फसल की कटाई कब की गई थी?",
       "residueStatus": "फसल के अवशेष की स्थिति क्या है?",
-      
+
       "getLocation": "स्थान प्राप्त करें",
       "locationCaptured": "स्थान कैप्चर किया गया!",
       "selectCrop": "फसल चुनें...",
@@ -320,7 +384,39 @@ const resources = {
       "crop_corn": "मक्का",
       "crop_cotton": "कपास",
       "crop_sugarcane": "गन्ना",
-      "crop_tomato": "टमाटर"
+      "crop_tomato": "टमाटर",
+      // Landing Page
+      "lp_badge": "एआई-संचालित कृषि",
+      "lp_heroTitle1": "स्मार्ट खेती",
+      "lp_heroTitle2": "बेहतर उपज",
+      "lp_heroDesc": "फसल की पैदावार का अनुमान लगाने और अपने खेत के लिए व्यक्तिगत सिफारिशें प्राप्त करने के लिए उन्नत मशीन लर्निंग का लाभ उठाएं।",
+      "lp_btnStart": "शुरू करें",
+      "lp_btnViewDash": "डैशबोर्ड देखें",
+      "lp_statYield": "विश्लेषण किया गया उपज डेटा",
+      "lp_statRecs": "शीर्ष सिफारिशें",
+      "lp_statAcc": "मॉडल सटीकता",
+      "lp_featuresTitle": "मुख्य विशेषताएं",
+      "lp_featuresDesc": "किसानों को डेटा-संचालित अंतर्दृष्टि और टिकाऊ प्रथाओं के साथ सशक्त बनाने के लिए डिज़ाइन किया गया है।",
+      "lp_feat1Title": "मौसम की जानकारी",
+      "lp_feat1Desc": "आपके स्थान के लिए वास्तविक समय का मौसम डेटा और 30-वर्षीय जलवायु विश्लेषण।",
+      "lp_feat2Title": "उपज की भविष्यवाणी",
+      "lp_feat2Desc": "मिट्टी और जलवायु कारकों के आधार पर अत्यधिक सटीक फसल उपज का पूर्वानुमान।",
+      "lp_feat3Title": "स्मार्ट सिफारिशें",
+      "lp_feat3Desc": "उन फसलों के लिए रैंक किए गए सुझाव प्राप्त करें जो आपके विशिष्ट खेत में फलेंगी-फूलेंगी।",
+      "lp_feat4Title": "मिट्टी की बुद्धिमत्ता",
+      "lp_feat4Desc": "आपकी खेती की रणनीति को अनुकूलित करने के लिए मिट्टी के पीएच और पोषक तत्वों के स्तर का विश्लेषण।",
+      "lp_stepsTitle": "यह कैसे काम करता है",
+      "lp_stepsDesc": "अपने खेत की पूरी क्षमता को अनलॉक करने के लिए तीन सरल चरणों का पालन करें।",
+      "lp_step1Title": "स्थान की पहचान करें",
+      "lp_step1Desc": "अति-स्थानीय पर्यावरणीय डेटा के लिए अपने खेत के स्थान को सटीक रूप से इंगित करें।",
+      "lp_step2Title": "पर्यावरण सिंक",
+      "lp_step2Desc": "हम आपके क्षेत्र के लिए मिट्टी और मौसम का डेटा स्वचालित रूप से खींचते हैं।",
+      "lp_step3Title": "AI विश्लेषण",
+      "lp_step3Desc": "हमारे मॉडल डेटा को संसाधित करते हैं ताकि समझने योग्य फसल अंतर्दृष्टि प्रदान की जा सके।",
+      "lp_ctaTitle": "क्या आप अपने खेत को बदलने के लिए तैयार हैं?",
+      "lp_ctaDesc": "अपनी उत्पादकता और स्थिरता बढ़ाने के लिए एआई का उपयोग करने वाले हजारों किसानों में शामिल हों।",
+      "lp_ctaBtn": "अपनी भविष्यवाणी शुरू करें",
+      "lp_footerCopy": "© 2024 एग्रोप्रेडिक्ट एआई। सर्वाधिकार सुरक्षित।"
     }
   }
 };

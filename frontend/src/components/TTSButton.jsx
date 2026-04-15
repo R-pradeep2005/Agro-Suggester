@@ -113,11 +113,27 @@ const TTSButton = ({ textToRead, isPlaying, setIsPlaying }) => {
     <button 
       onClick={handleSpeak}
       className={`btn ${isPlaying ? 'btn-primary' : 'btn-secondary'}`}
-      style={{ padding: '0.5rem', borderRadius: '50%' }}
+      style={{ 
+        width: '42px', 
+        height: '42px', 
+        padding: '0', 
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: isPlaying ? 'linear-gradient(135deg, #00d68f, #00b377)' : 'rgba(255,255,255,0.08)',
+        boxShadow: isPlaying ? '0 0 20px var(--brand-green-glow)' : 'var(--sh-sm)',
+        border: isPlaying ? '1px solid #00ffaa' : '1px solid rgba(255,255,255,0.15)',
+        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+      }}
       aria-label="Read Aloud"
       title="Read Aloud"
     >
-      <Volume2 size={24} color={isPlaying ? '#fff' : 'var(--text-main)'} />
+      <Volume2 
+        size={20} 
+        color={isPlaying ? '#001a0f' : '#ffffff'} 
+        style={{ filter: isPlaying ? 'none' : 'drop-shadow(0 0 8px rgba(0,214,143,0.3))' }}
+      />
     </button>
   );
 };
