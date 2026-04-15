@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Sprout } from 'lucide-react';
 import TTSButton from './TTSButton';
 
 const Navbar = ({ currentInstructionText }) => {
@@ -20,10 +21,29 @@ const Navbar = ({ currentInstructionText }) => {
 
   return (
     <nav className="navbar glass-panel">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <h1 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--primary-hover)' }}>
+      <div className="navbar-brand">
+        <div style={{
+          width: '36px', height: '36px',
+          background: 'linear-gradient(135deg, #10b981, #059669)',
+          borderRadius: '10px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 4px 10px rgba(16,185,129,0.25)'
+        }}>
+          <Sprout size={20} color="white" />
+        </div>
+        <h1 style={{ 
+          fontSize: '1.25rem', 
+          fontWeight: '700', 
+          background: 'linear-gradient(135deg, #059669, #0d9488)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          margin: 0
+        }}>
           {t('appTitle')}
         </h1>
+      </div>
+
+      <div className="navbar-actions">
         <div className="lang-switch">
           <button 
             className={`lang-btn ${i18n.language === 'en' ? 'active' : ''}`}
@@ -44,9 +64,7 @@ const Navbar = ({ currentInstructionText }) => {
             {t('language_hi')}
           </button>
         </div>
-      </div>
-
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        
         <TTSButton 
           textToRead={currentInstructionText} 
           isPlaying={isPlaying} 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import ConversationalForm from './components/ConversationalForm';
 import Dashboard from './components/Dashboard';
+import LandingPage from './components/LandingPage';
 import { FormProvider, useFormContext } from './context/FormContext';
 import './index.css';
 
@@ -85,7 +86,19 @@ const LoadingScreen = () => {
 
 const AppContent = () => {
   const [currentInstructionText, setCurrentInstructionText] = useState('');
+  const [page, setPage] = useState('landing');
   const { isSubmitted, isLoading } = useFormContext();
+
+  React.useEffect(() => {
+    // Force back to landing page on refresh by clearing hash
+    if (window.location.hash) {
+      window.location.hash = '';
+    }
+  }, []);
+
+  if (page === 'landing') {
+    return <LandingPage onGetStarted={() => setPage('app')} />;
+  }
 
   return (
     <div className="app-layout">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from '../context/FormContext';
 import { MapPin } from 'lucide-react';
+import AnimatedSelect from './AnimatedSelect';
 
 const StepWrapper = ({ title, children, canProceed, onNext }) => {
   const { t } = useTranslation();
@@ -9,12 +10,13 @@ const StepWrapper = ({ title, children, canProceed, onNext }) => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: '100%' }}>
       <h2 style={{ fontSize: '1.5rem', fontWeight: '600', color: 'var(--primary-hover)' }}>{title}</h2>
       <div style={{ flex: 1 }}>{children}</div>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
+      <div className="step-buttons">
         {onNext && (
           <button 
             className="btn btn-primary" 
             onClick={onNext} 
             disabled={!canProceed}
+            style={{ width: window.innerWidth < 640 ? '100%' : 'auto' }}
           >
             {t('next')}
           </button>
@@ -30,11 +32,18 @@ export const GeolocationStep = () => {
   const { formData, updateFormData, nextStep } = useFormContext();
   const [loading, setLoading] = useState(false);
 
+  const [lat, setLat] = useState(formData.geolocation?.split(',')[0]?.trim() || '');
+  const [lon, setLon] = useState(formData.geolocation?.split(',')[1]?.trim() || '');
+
   const handleGetLocation = () => {
     setLoading(true);
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((pos) => {
-        updateFormData('geolocation', `${pos.coords.latitude}, ${pos.coords.longitude}`);
+        const newLat = pos.coords.latitude.toFixed(6);
+        const newLon = pos.coords.longitude.toFixed(6);
+        setLat(newLat);
+        setLon(newLon);
+        updateFormData('geolocation', `${newLat}, ${newLon}`);
         setLoading(false);
       }, () => setLoading(false));
     } else {
@@ -42,18 +51,61 @@ export const GeolocationStep = () => {
     }
   };
 
+  const handleManualChange = (field, val) => {
+    if (field === 'lat') {
+      setLat(val);
+      updateFormData('geolocation', `${val}, ${lon}`);
+    } else {
+      setLon(val);
+      updateFormData('geolocation', `${lat}, ${val}`);
+    }
+  };
+
   return (
     <StepWrapper 
       title={t('geolocation')} 
-      canProceed={!!formData.geolocation} 
+      canProceed={!!formData.geolocation && lat && lon} 
       onNext={nextStep}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', marginTop: '2rem' }}>
-        <button className="btn btn-secondary" onClick={handleGetLocation} disabled={loading}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', marginTop: '1rem' }}>
+        <button className="btn btn-secondary" onClick={handleGetLocation} disabled={loading} style={{ width: '100%' }}>
           <MapPin size={20} />
           {loading ? '...' : formData.geolocation ? t('locationCaptured') : t('getLocation')}
         </button>
-        {formData.geolocation && <p style={{ color: 'var(--primary-color)' }}>{formData.geolocation}</p>}
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%' }}>
+          <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
+          <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem', fontWeight: '500' }}>{t('or')}</span>
+          <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
+        </div>
+
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text-main)' }}>{t('manualInput')}</h3>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ flex: 1 }}>
+              <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>{t('latitude')}</label>
+              <input 
+                type="number" 
+                step="any"
+                className="input-base" 
+                placeholder="0.000000"
+                value={lat} 
+                onChange={(e) => handleManualChange('lat', e.target.value)} 
+              />
+            </div>
+            <div style={{ flex: 1 }}>
+              <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>{t('longitude')}</label>
+              <input 
+                type="number" 
+                step="any"
+                className="input-base" 
+                placeholder="0.000000"
+                value={lon} 
+                onChange={(e) => handleManualChange('lon', e.target.value)} 
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </StepWrapper>
   );
@@ -94,16 +146,12 @@ export const PrevCropNameStep = () => {
       canProceed={!!formData.prevCropName} 
       onNext={nextStep}
     >
-      <input 
-        list="crops"
-        className="input-base" 
+      <AnimatedSelect
+        value={formData.prevCropName}
+        onChange={(val) => updateFormData('prevCropName', val)}
+        options={crops.map(c => ({ value: c, label: c }))}
         placeholder={t('selectCrop')}
-        value={formData.prevCropName} 
-        onChange={(e) => updateFormData('prevCropName', e.target.value)} 
       />
-      <datalist id="crops">
-        {crops.map(c => <option key={c} value={c} />)}
-      </datalist>
     </StepWrapper>
   );
 };
@@ -119,7 +167,7 @@ export const PrevCropYieldStep = () => {
       canProceed={!!formData.prevCropYieldValue} 
       onNext={nextStep}
     >
-      <div style={{ display: 'flex', gap: '1rem' }}>
+      <div className="flex-responsive">
         <input 
           type="number" 
           className="input-base" 
@@ -127,15 +175,16 @@ export const PrevCropYieldStep = () => {
           value={formData.prevCropYieldValue} 
           onChange={(e) => updateFormData('prevCropYieldValue', e.target.value)} 
         />
-        <select 
-          className="input-base" 
-          style={{ flex: 1 }}
-          value={formData.prevCropYieldUnit}
-          onChange={(e) => updateFormData('prevCropYieldUnit', e.target.value)}
-        >
-          <option value="kg">{t('kg')}</option>
-          <option value="tons">{t('tons')}</option>
-        </select>
+        <div style={{ flex: 1 }}>
+          <AnimatedSelect
+            value={formData.prevCropYieldUnit}
+            onChange={(val) => updateFormData('prevCropYieldUnit', val)}
+            options={[
+              { value: 'kg', label: t('kg') },
+              { value: 'tons', label: t('tons') }
+            ]}
+          />
+        </div>
       </div>
     </StepWrapper>
   );
@@ -153,14 +202,12 @@ export const PrevFertilizerStep = () => {
       canProceed={!!formData.prevFertilizerName} 
       onNext={nextStep}
     >
-      <select 
-        className="input-base" 
-        value={formData.prevFertilizerName} 
-        onChange={(e) => updateFormData('prevFertilizerName', e.target.value)}
-      >
-        <option value="" disabled>{t('selectFertilizer')}</option>
-        {fertilizers.map(f => <option key={f} value={f}>{f}</option>)}
-      </select>
+      <AnimatedSelect
+        value={formData.prevFertilizerName}
+        onChange={(val) => updateFormData('prevFertilizerName', val)}
+        options={fertilizers.map(f => ({ value: f, label: f }))}
+        placeholder={t('selectFertilizer')}
+      />
     </StepWrapper>
   );
 };
@@ -176,7 +223,7 @@ export const PrevFertilizerAmountStep = () => {
       canProceed={!!formData.prevFertilizerAmountValue} 
       onNext={nextStep}
     >
-      <div style={{ display: 'flex', gap: '1rem' }}>
+      <div className="flex-responsive">
         <input 
           type="number" 
           className="input-base" 
@@ -184,15 +231,16 @@ export const PrevFertilizerAmountStep = () => {
           value={formData.prevFertilizerAmountValue} 
           onChange={(e) => updateFormData('prevFertilizerAmountValue', e.target.value)} 
         />
-        <select 
-          className="input-base" 
-          style={{ flex: 1 }}
-          value={formData.prevFertilizerAmountUnit}
-          onChange={(e) => updateFormData('prevFertilizerAmountUnit', e.target.value)}
-        >
-          <option value="kg">{t('kg')}</option>
-          <option value="liters">{t('liters')}</option>
-        </select>
+        <div style={{ flex: 1 }}>
+          <AnimatedSelect
+            value={formData.prevFertilizerAmountUnit}
+            onChange={(val) => updateFormData('prevFertilizerAmountUnit', val)}
+            options={[
+              { value: 'kg', label: t('kg') },
+              { value: 'liters', label: t('liters') }
+            ]}
+          />
+        </div>
       </div>
     </StepWrapper>
   );
@@ -234,7 +282,7 @@ export const ResidueStatusStep = () => {
       canProceed={!!formData.residueStatus} 
       onNext={nextStep}
     >
-      <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+      <div className="flex-responsive" style={{ marginTop: '1rem' }}>
         <button 
           className={`btn ${formData.residueStatus === 'left' ? 'btn-primary' : 'btn-secondary'}`}
           onClick={() => handleToggle('left')}
@@ -295,15 +343,18 @@ export const ReviewStep = () => {
         const data = await response.json();
         console.log("API response:", data);
         setApiResult(data);
+        setIsSubmitted(true);
       } else {
-        console.error("API error:", await response.text());
+        const errText = await response.text();
+        console.error("API error:", errText);
+        alert("Prediction failed: " + errText);
       }
     } catch (e) {
       console.error("Submit error:", e);
+      alert("Error reaching the backend services. Please ensure they are running.");
     } finally {
       setIsSubmitting(false);
       setIsLoading(false);
-      setIsSubmitted(true);
     }
   };
 
@@ -339,8 +390,13 @@ export const ReviewStep = () => {
         <Row label={t('residueStatus')} value={t(formData.residueStatus === 'left' ? 'leftInLand' : formData.residueStatus === 'disposed' ? 'disposedElsewhere' : '')} stepIdx={7} />
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
-        <button className="btn btn-primary" onClick={handleSubmit} disabled={isSubmitting}>
+      <div className="step-buttons">
+        <button 
+          className="btn btn-primary" 
+          onClick={handleSubmit} 
+          disabled={isSubmitting}
+          style={{ width: window.innerWidth < 640 ? '100%' : 'auto' }}
+        >
           {isSubmitting ? '...' : t('submit')}
         </button>
       </div>
