@@ -75,11 +75,11 @@ async def forward_request(url: str, request: Request):
 
 @app.api_route("/api/input_prep/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH"])
 async def proxy_input_prep(path: str, request: Request):
-    print(f"\n[GATEWAY] ← Received {request.method} from Frontend: /api/input_prep/{path}")
-    print(f"[GATEWAY] → Forwarding to Input Prep Service: {INPUT_PREP_URL}/{path}")
+    print(f"\n[GATEWAY] <- Received {request.method} from Frontend: /api/input_prep/{path}")
+    print(f"[GATEWAY] -> Forwarding to Input Prep Service: {INPUT_PREP_URL}/{path}")
     response = await forward_request(f"{INPUT_PREP_URL}/{path}", request)
-    print(f"[GATEWAY] ← Response from Input Prep: HTTP {response.status_code}")
-    print(f"[GATEWAY] → Returning final result to Frontend\n")
+    print(f"[GATEWAY] <- Response from Input Prep: HTTP {response.status_code}")
+    print(f"[GATEWAY] -> Returning final result to Frontend\n")
     return response
 
 @app.api_route("/api/recommendation/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH"])

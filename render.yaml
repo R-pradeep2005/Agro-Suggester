@@ -1,0 +1,32 @@
+services:
+  # --- API Gateway ---
+  - type: web
+    name: agro-gateway
+    runtime: docker
+    dockerfilePath: ./gateway/Dockerfile
+    dockerContext: ./gateway
+    plan: free
+    envVars:
+      - key: INPUT_PREP_URL
+        value: https://agro-input-prep.onrender.com
+      - key: RECOMMENDATION_URL
+        value: https://agro-recommendation.onrender.com
+
+  # --- Input Prep Service ---
+  - type: web
+    name: agro-input-prep
+    runtime: docker
+    dockerfilePath: ./input_prep/Dockerfile
+    dockerContext: ./input_prep
+    plan: free
+    envVars:
+      - key: RECOMMENDATION_URL
+        value: https://agro-recommendation.onrender.com
+
+  # --- Recommendation Service ---
+  - type: web
+    name: agro-recommendation
+    runtime: docker
+    dockerfilePath: ./recommendation/Dockerfile
+    dockerContext: ./recommendation
+    plan: free
