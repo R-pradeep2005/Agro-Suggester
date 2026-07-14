@@ -61,9 +61,10 @@ const LandingPage = ({ onGetStarted }) => {
       <Navbar currentInstructionText={t('lp_heroDesc')} />
 
 
-      <div id="step-content">
+      <div id="step-content" role="main">
         {/* Hero Section */}
-        <section className="lp-hero">
+        <header>
+        <section className="lp-hero" aria-label="Hero">
           <div className="lp-hero-inner">
             <motion.div
               initial={{ opacity: 1, y: 30 }}
@@ -128,9 +129,11 @@ const LandingPage = ({ onGetStarted }) => {
             </motion.div>
           </div>
         </section>
+        </header>
 
         {/* Features Section */}
-        <section className="lp-features">
+        <article>
+        <section className="lp-features" aria-label="Features">
           <div className="lp-section-inner">
             <motion.div
               className="lp-section-header"
@@ -161,9 +164,10 @@ const LandingPage = ({ onGetStarted }) => {
             </div>
           </div>
         </section>
+        </article>
 
         {/* How It Works */}
-        <section className="lp-steps">
+        <section className="lp-steps" aria-label="How It Works">
           <div className="lp-section-inner">
             <motion.div
               className="lp-section-header"
@@ -224,7 +228,7 @@ const LandingPage = ({ onGetStarted }) => {
         </section>
 
         {/* Footer */}
-        <footer className="lp-footer">
+        <footer className="lp-footer" role="contentinfo">
           <div className="lp-footer-inner">
             <div className="lp-footer-logo">
               <Sprout size={20} color="#10b981" />

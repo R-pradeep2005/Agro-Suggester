@@ -1,0 +1,5 @@
+# Agro Suggester — robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://agro-suggester.vercel.app/sitemap.xml

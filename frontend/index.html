@@ -2,13 +2,78 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="referrer" content="no-referrer" />
-    <link rel="icon" type="image/svg+xml" href="/agro.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agro Suggester</title>
+    <meta name="referrer" content="no-referrer" />
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Agro Suggester — AI-Powered Crop Recommendation & Yield Prediction</title>
+    <meta name="description" content="Predict crop yield and discover the best crops for your farm using AI, geolocation, and real-time weather data. Get data-driven agriculture insights for rice, corn, cotton, sugarcane, and tomato." />
+    <meta name="keywords" content="crop recommendation, yield prediction, agriculture AI, smart farming, crop planning, soil analysis, weather-based farming, XGBoost crop model, SHAP explainability" />
+    <meta name="author" content="R-pradeep2005" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#10b981" />
+
+    <!-- Canonical URL (update after deployment) -->
+    <link rel="canonical" href="https://agro-suggester.vercel.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://agro-suggester.vercel.app/" />
+    <meta property="og:title" content="Agro Suggester — AI Crop Recommendation & Yield Prediction" />
+    <meta property="og:description" content="Use AI and real-time environmental data to predict crop yield and get smart crop recommendations. Built with XGBoost ML models and SHAP explainability." />
+    <meta property="og:image" content="https://agro-suggester.vercel.app/og-image.png" />
+    <meta property="og:site_name" content="Agro Suggester" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Agro Suggester — AI Crop Recommendation & Yield Prediction" />
+    <meta name="twitter:description" content="Predict crop yield and discover the best crops for your farm using AI, geolocation, and real-time weather data." />
+    <meta name="twitter:image" content="https://agro-suggester.vercel.app/og-image.png" />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/agro.svg" />
+    <link rel="apple-touch-icon" href="/agro.svg" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Agro Suggester",
+      "description": "AI-powered crop recommendation and yield prediction tool using geolocation, real-time weather data, and XGBoost machine learning models.",
+      "applicationCategory": "Agriculture",
+      "operatingSystem": "Web",
+      "url": "https://agro-suggester.vercel.app/",
+      "author": {
+        "@type": "Person",
+        "name": "R-pradeep2005"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "AI-powered crop yield prediction",
+        "Real-time weather data integration",
+        "Geolocation-based soil analysis",
+        "SHAP explainability for predictions",
+        "Multi-crop comparison (Rice, Corn, Cotton, Sugarcane, Tomato)",
+        "Multilingual support (English, Tamil, Hindi)"
+      ]
+    }
+    </script>
   </head>
   <body>
+    <noscript>
+      <div style="padding: 2rem; text-align: center; font-family: sans-serif;">
+        <h1>Agro Suggester</h1>
+        <p>AI-powered crop recommendation and yield prediction. Please enable JavaScript to use this application.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+
